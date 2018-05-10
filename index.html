@@ -48,6 +48,10 @@
     padding: 5px;
     margin: 70px auto;   
     }
+    #login {
+    margin-top:30px;
+    margin-left:30px;
+    }
    
     </style>
 
@@ -92,10 +96,8 @@
                     <li><a href="#price-page">Pricing</a></li>
                     <li><a href="#contact-page">Contact us</a></li>
 
-                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#login-Modal" id="login">Login</button>
-                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#register-Modal" id="register">Register</button>
-
-
+                    <button type="button" class="btn btn-info text-right" data-toggle="modal" data-target="#login-Modal" id="login" >Login</button>
+                   
                     <!--
                     <li><a href="#faq-page">FAQ</a></li>
                     <li><a href="#blog-page">Blog</a></li>-->
@@ -103,7 +105,7 @@
                 </ul>
             </nav>
         </div>
-    </div>
+    </diV>
     <!--Mainmenu-area/-->
 
 
@@ -144,8 +146,13 @@
         </div>
         <div class="modal-footer">
           <button type="button" role="button" type="submit" class="btn btn-default btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-          <p>Not a member? <a href="#">Sign Up</a></p>
-          <p>Forgot <a href="#">Password?</a></p>
+          <p>Not a member? <a  data-toggle="modal" data-target="#register-Modal" data-dismiss="modal">sign up</a></p>
+          <p> <a href="forgot-password.html">forgot password?</a></p>
+
+                      
+
+          
+           
         </div>
       </div>
     </div>
@@ -202,6 +209,7 @@
       </div>
     </div>
   </div> 
+
 
 
 
@@ -1142,6 +1150,12 @@
             </div>
         </div>
     </section>
+
+
+
+
+
+
 
 
 

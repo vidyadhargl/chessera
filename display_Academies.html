@@ -16,9 +16,20 @@
   <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
   <!-- Custom styles for this template-->
   <link href="css/sb-admin.css" rel="stylesheet">
+  <style type="text/css">
+   body{
+    font-size: 1rem;
+   }
+ </style>
+
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+   -->
 </head>
 
-<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<body class="fixed-nav sticky-footer bg-dark" id="page-top" >
    <div id="sidenav"></div>
        <div id="header"></div>
   <div class="content-wrapper">
@@ -26,14 +37,14 @@
       <!-- Breadcrumbs-->
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a href="#">Dashboard</a>
+          <a href="admin_index.html">home</a>
         </li>
-        <li class="breadcrumb-item active">Tables</li>
+        <li class="breadcrumb-item active">View Academies</li>
       </ol>
       <!-- Example DataTables Card-->
       <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-table"></i> Data Table Example</div>
+          <i class="fa fa-table"></i> Chess Academies list</div>
         <div class="card-body">
           <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -44,8 +55,9 @@
                   <th>general secretary</th>
                   <th>no f students</th>
                   <th>phone number:</th>
-                  <th>email id:</th>
-                <!--  <th>city:</th>
+                  <th>edit/delete</th>
+                  <!--   <th>email</th>
+                 <th>city:</th>
                   <th>place</th>
                   <th>fees:</th>
                   <th>Address:</th>  -->            
@@ -58,8 +70,9 @@
                   <th>general secretary</th>
                   <th>no of students</th>
                   <th>phone number:</th>
-                  <th>email id:</th>
-                <!-- <th>city:</th>
+                  <th>edit/delete</th>
+                  <!-- <th>email id:</th>
+                  <th>city:</th>
                   <th>place</th>
                   <th>fees:</th>
                   <th>Address:</th> -->
@@ -67,20 +80,23 @@
               </tfoot>
               <tbody>
                 <tr>
-                  <td>Tiger Nixon</td>
+                  <td>Atiger Nixon</td>
                   <td>System Architect</td>
                   <td>Edinburgh</td>
                   <td>61</td>
                   <td>2011/04/25</td>
-                  <td>$320,800</td>
+                  <td><a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pencil"></span></a>  
+                      <a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-trash"></span></td>
+                     
                 </tr>
                 <tr>
-                  <td>Garrett Winters</td>
+                  <td>Aarrett Winters</td>
                   <td>Accountant</td>
                   <td>Tokyo</td>
                   <td>63</td>
                   <td>2011/07/25</td>
-                  <td>$170,750</td>
+                 <td><a href="Add_Academies.html" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pencil"></span></a>  
+                      <a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-trash"></span></td>
                 </tr>
                 <tr>
                   <td>Ashton Cox</td>
@@ -88,15 +104,17 @@
                   <td>San Francisco</td>
                   <td>66</td>
                   <td>2009/01/12</td>
-                  <td>$86,000</td>
+                  <td><a href="Add_Academies.html" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pencil"></span></a>  
+                      <a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-trash"></span></td>
                 </tr>
                 <tr>
-                  <td>Cedric Kelly</td>
+                  <td>Aedric Kelly</td>
                   <td>Senior Javascript Developer</td>
                   <td>Edinburgh</td>
                   <td>22</td>
                   <td>2012/03/29</td>
-                  <td>$433,060</td>
+                   <td><a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pencil"></span></a>  
+                      <a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-trash"></span></td>
                 </tr>
                 <tr>
                   <td>Airi Satou</td>
@@ -104,7 +122,8 @@
                   <td>Tokyo</td>
                   <td>33</td>
                   <td>2008/11/28</td>
-                  <td>$162,700</td>
+                 <td><a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pencil"></span></a>  
+                      <a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-trash"></span></td>
                 </tr>
                 <tr>
                   <td>Brielle Williamson</td>
@@ -112,15 +131,17 @@
                   <td>New York</td>
                   <td>61</td>
                   <td>2012/12/02</td>
-                  <td>$372,000</td>
+                 <td><a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pencil"></span></a>  
+                      <a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-trash"></span></td>
                 </tr>
                 <tr>
-                  <td>Herrod Chandler</td>
+                  <td>Aerrod Chandler</td>
                   <td>Sales Assistant</td>
                   <td>San Francisco</td>
                   <td>59</td>
                   <td>2012/08/06</td>
-                  <td>$137,500</td>
+                  <td><a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pencil"></span></a>  
+                      <a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-trash"></span></td>
                 </tr>
                 <tr>
                   <td>Rhona Davidson</td>
@@ -128,47 +149,53 @@
                   <td>Tokyo</td>
                   <td>55</td>
                   <td>2010/10/14</td>
-                  <td>$327,900</td>
+                  <td><a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pencil"></span></a>  
+                      <a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-trash"></span></td>
                 </tr>
                 <tr>
-                  <td>Colleen Hurst</td>
+                  <td>AColleen Hurst</td>
                   <td>Javascript Developer</td>
                   <td>San Francisco</td>
                   <td>39</td>
                   <td>2009/09/15</td>
-                  <td>$205,500</td>
+                  <td><a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pencil"></span></a>  
+                      <a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-trash"></span></td>
                 </tr>
                 <tr>
-                  <td>Sonya Frost</td>
+                  <td>Aonya Frost</td>
                   <td>Software Engineer</td>
                   <td>Edinburgh</td>
                   <td>23</td>
                   <td>2008/12/13</td>
-                  <td>$103,600</td>
+                  <td><a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pencil"></span></a>  
+                      <a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-trash"></span></td>
                 </tr>
                 <tr>
-                  <td>Jena Gaines</td>
+                  <td>Aena Gaines</td>
                   <td>Office Manager</td>
                   <td>London</td>
                   <td>30</td>
                   <td>2008/12/19</td>
-                  <td>$90,560</td>
+                  <td><a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pencil"></span></a>  
+                      <a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-trash"></span></td>
                 </tr>
                 <tr>
-                  <td>Quinn Flynn</td>
+                  <td>AQuinn Flynn</td>
                   <td>Support Lead</td>
                   <td>Edinburgh</td>
                   <td>22</td>
                   <td>2013/03/03</td>
-                  <td>$342,000</td>
+                 <td><a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pencil"></span></a>  
+                      <a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-trash"></span></td>
                 </tr>
                 <tr>
-                  <td>Charde Marshall</td>
+                  <td>aharde Marshall</td>
                   <td>Regional Director</td>
                   <td>San Francisco</td>
                   <td>36</td>
                   <td>2008/10/16</td>
-                  <td>$470,600</td>
+                  <td><a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pencil"></span></a>  
+                      <a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-trash"></span></td>
                 </tr>
                 <tr>
                   <td>Haley Kennedy</td>
@@ -264,7 +291,8 @@
                   <td>London</td>
                   <td>47</td>
                   <td>2009/10/09</td>
-                  <td>$1,200,000</td>
+                 <td><a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pencil"></span></a>  
+                      <a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-trash"></span></td>
                 </tr>
                 <tr>
                   <td>Gavin Joyce</td>
@@ -565,7 +593,7 @@
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin.min.js"></script>
     <!-- Custom scripts for this page-->
-    <script src="js/sb-admin-datatables.min.js"></script>
+   <script src="js/sb-admin-datatables.min.js"></script>
      <script> 
   $(function(){
     $("#header").load("header.html"); 
