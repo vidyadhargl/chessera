@@ -66,6 +66,7 @@
 
 	}
 	#btn_postPuzzle {
+		display: block;
 		background-image:  url("images/Button.png");
 		background-size: 100%;
 		width: 257px;
@@ -135,7 +136,8 @@
 			<img  class="chess_piece" data-piece="N" src="images/white/N.png" draggable="true" ondragstart="drag(event)" width="50" height="50">
 		<div> 
 	</div>
-		<button id="btn_postPuzzle" onclick="postPuzzle()"></button>
+		<a href="solution.html" role="button" id="btn_postPuzzle" onclick="postPuzzle()"></a>
+
 	</div>
 </div>
 	<script type="text/javascript">
