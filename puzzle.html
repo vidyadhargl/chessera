@@ -86,7 +86,7 @@
 
 
    
-<div class="container">
+<div class="container" dropable="true">
 	
 	<div id = "board_container" ondrop="drop(event)" ondragover="allowDrop(event)">
 	</div>
@@ -144,8 +144,13 @@
 		var puzleObj = {}
 		var randomNumber = 0;
 		window.onload=createBoard();
+		//var a = 97;
+		//var charArray = {};
+		
 		function createBoard(){
-			for (rowIndex = 0; rowIndex < 8 ; rowIndex++){
+			var column= new Array("a","b","c","d","e","f","g","h");
+		
+			for (rowIndex = 1; rowIndex <= 8 ; rowIndex++){
 				var rowDiv = document.createElement("div")
 				rowDiv.id = "row"+rowIndex
 				rowDiv.className = "row"
@@ -153,8 +158,14 @@
 				var row = document.createDocumentFragment()
 
 				for (columnIndex = 0; columnIndex < 8 ; columnIndex++){
+					console.log(column[columnIndex]);
+					//alert(column(0));
+					//alert(columnIndex[0]);
+					//charArray[String.fromCharCode(a + i)] = String.fromCharCode(a + i);
+					//alert(charArray);
+					//console.log(charArray);
 					var box = document.createElement('div')
-					box.id = "row"+rowIndex+"column"+columnIndex
+					box.id = ""+column[columnIndex]+""+rowIndex
 					if (rowIndex % 2 == 0){
 						if(columnIndex%2==0)
 							box.className = 'whiteBox'
@@ -172,6 +183,10 @@
 			document.getElementById('row'+rowIndex).appendChild(row)
 			}
 		}
+
+
+
+
 
 		function allowDrop(ev) {
    			 ev.preventDefault();
