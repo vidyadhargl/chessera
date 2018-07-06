@@ -1,0 +1,277 @@
+<!Doctype html>
+<html>
+
+<head>
+<title>ChessEra Puzzle</title>
+
+<meta charset="utf-8"/>
+	<style>
+	body {
+		background-color: #e6e6e6;
+		/*background: url("images/board.png");*/
+		margin:0 auto;
+	}
+	.container {
+		position:absolute;
+		width:100%;
+		height:100%;
+	}
+
+	#board_container{
+		background-image: url("images/board.png");
+		background-position: 0px -89px; 
+		background-repeat: no-repeat;
+		width:682px;
+		height:660px;
+		margin: 0 auto;
+		margin-top:10px;
+		padding-top: 10px;
+		text-align: center;
+		float: left;		
+	}
+	.whiteBox, .blackBox{
+		position: relative;
+		float:left;
+		width:77px;
+		height:77px;
+	}
+	.whiteBox, .blackBox > img {
+		margin: 0 auto;
+	}
+
+	#coins_left{
+		//float:right;
+		//margin-top: 0px;
+
+	}
+	#coins_right{
+		//float:left;
+		//margin-top: 0px;
+	}
+	.combo{
+		text-align: center;
+		float :left;
+	}
+	.rightside_options {
+		float:left;
+		margin-top: 10px;
+		padding:50px;
+	}
+	.piece_container {
+		/* margin-top:60px; */
+	}
+	.options_container > * {
+		display: block;
+		font-size: 20px;
+		width: 260px;
+		padding:10px;
+		margin:10px;
+		border-radius: 15px 15px 15px 15px;
+		background-color:#48D1CC;
+
+	}
+	#btn_postPuzzle {
+		display: block;
+		background-image:  url("images/Button.png");
+		background-size: 100%;
+		width: 257px;
+    	height: 56px;
+    	border-style: none;
+    	margin:15px;
+    	margin-top: 60px;
+    	cursor: pointer;
+    	border-radius: 15px 15px 15px 15px;
+	}
+	.row {
+		margin-left:56px;
+	}
+	</style>
+</head>
+<body>
+
+
+   
+<div id = "container" class="container" ondrop="drop(event)" ondragover="allowDrop(event)">
+	
+	<div id = "board_container" ondrop="drop(event)" ondragover="allowDrop(event)">
+	</div>
+	<div class = "rightside_options">
+		<div class="options_container">
+			<select>
+	  			<option value="black">Black</option>
+	  			<option value="white">White</option>
+			</select>
+			<select>
+			
+	  			<option value="win">Win</option>
+	  			<option value="Advantage">Advantage</option>
+				<option value="draw">Draw</option>
+	  			<option value="loose">Loose</option>
+			</select>
+			<select>
+			
+	  			<option value="One">One</option>
+	  			<option value="Two">Two</option>
+				<option value="Three">Three</option>
+	  			<option value="Four">Four</option>
+			</select>
+			<select>
+	  			<option value="Beginner">Beginner</option>
+	  			<option value="Easy">Easy</option>
+				<option value="Medium">Medium</option>
+	  			<option value="Hard">Hard</option>
+	  			<option value="Expert">Expert</option>
+			</select>
+		</div>
+	<div class="piece_container">
+		<div id= "coins_left" >
+			<img  class="chess_piece" data-piece="k" src="images/black/k.png" draggable="true" ondragstart="drag(event)" width="50" height="50">
+			<img  class="chess_piece" data-piece="q" src="images/black/q.png" draggable="true" ondragstart="drag(event)" width="50" height="50">
+			<img  class="chess_piece" data-piece="r" src="images/black/r.png" draggable="true" ondragstart="drag(event)" width="50" height="50">
+			<img  class="chess_piece" data-piece="b" src="images/black/b.png" draggable="true" ondragstart="drag(event)" width="50" height="50">
+			<img  class="chess_piece" data-piece="p" src="images/black/p.png" draggable="true" ondragstart="drag(event)" width="50" height="50">
+			<img  class="chess_piece" data-piece="n" src="images/black/n.png" draggable="true" ondragstart="drag(event)" width="50" height="50">
+		<div>
+		<div id= "coins_right">
+			<img  class="chess_piece" data-piece="K" src="images/white/K.png" draggable="true" ondragstart="drag(event)" width="50" height="50">
+			<img  class="chess_piece" data-piece="Q" src="images/white/Q.png" draggable="true" ondragstart="drag(event)" width="50" height="50">
+			<img  class="chess_piece" data-piece="R" src="images/white/R.png" draggable="true" ondragstart="drag(event)" width="50" height="50">
+			<img  class="chess_piece" data-piece="B" src="images/white/B.png" draggable="true" ondragstart="drag(event)" width="50" height="50">
+			<img  class="chess_piece" data-piece="P" src="images/white/P.png" draggable="true" ondragstart="drag(event)" width="50" height="50">
+			<img  class="chess_piece" data-piece="N" src="images/white/N.png" draggable="true" ondragstart="drag(event)" width="50" height="50">
+		<div> 
+	</div>
+		<button id="btn_postPuzzle" onclick="postPuzzle()"></a>
+
+	</div>
+</div>
+	<script type="text/javascript">
+		var puzleObj = {}
+		var randomNumber = 0;
+		var column= new Array("a","b","c","d","e","f","g","h");
+		var droppableClasses = ["whiteBox","blackBox","droppedImage"]
+		window.onload=createBoard();
+		
+		function createBoard(){
+			for (rowIndex = 1; rowIndex <= 8 ; rowIndex++){
+				var rowDiv = document.createElement("div")
+				rowDiv.id = "row"+rowIndex
+				rowDiv.className = "row"
+				document.getElementById('board_container').appendChild(rowDiv)
+				var row = document.createDocumentFragment()
+
+				for (columnIndex = 0; columnIndex < 8 ; columnIndex++){
+					var box = document.createElement('div')
+					box.id = column[columnIndex]+rowIndex
+					if (rowIndex % 2 == 0){
+						if(columnIndex%2==0)
+							box.className = 'blackBox'
+						else
+							box.className = 'whiteBox'
+					}
+					else {
+						if(columnIndex%2==0)
+							box.className = 'whiteBox'
+						else
+							box.className = 'blackBox'
+					}
+					row.appendChild(box)
+				}
+			document.getElementById('row'+rowIndex).appendChild(row)
+			}
+		}
+
+		function allowDrop(ev) {
+   			 ev.preventDefault();
+		}
+
+		function drag(ev) {
+			ev.dataTransfer.setData("src", ev.target.src);
+			ev.dataTransfer.setData("data-piece", ev.target.dataset.piece)
+			ev.dataTransfer.setData("className", ev.target.className)
+			if (ev.target.id) {
+				ev.dataTransfer.setData("id", ev.target.id)	
+			}
+		}
+
+		function drop(ev) {
+			ev.preventDefault();
+
+			var src = ev.dataTransfer.getData("src");
+    		var piece = ev.dataTransfer.getData("data-piece");
+    		var id = ""
+    		if (ev.dataTransfer.getData("id")) {
+    			id = ev.dataTransfer.getData("id")
+    		}
+    		
+			var classNameDroppedInto = ev.target.className
+			alert(classNameDroppedInto)
+			var classNameOfDraggedImage =  ev.dataTransfer.getData("className")
+			alert(classNameOfDraggedImage)
+			alert(droppableClasses.indexOf(classNameDroppedInto))
+			
+			if(droppableClasses.indexOf(classNameDroppedInto) == -1 && classNameOfDraggedImage == "droppedImage") {
+				var elementToRemove = document.getElementById(id);
+				elementToRemove.parentNode.removeChild(elementToRemove);
+				return
+			}
+			
+			var droppedBoxId = ev.target.id;
+    		var newimg = document.createElement('img')
+    		newimg.src = src
+    		newimg.id = id=="" ? randomPieceName() : id;
+    		newimg.draggable = true;
+    		newimg.className = "droppedImage"
+    		newimg.setAttribute('data-piece', piece)
+
+    		var c = document.getElementById(droppedBoxId).childElementCount;
+			if( c == 0 ) {
+				if(id == ""){
+					document.getElementById(droppedBoxId).appendChild(newimg)
+				}
+    		    else {
+    		    	document.getElementById(droppedBoxId).appendChild(document.getElementById(id))
+    		    }
+    		    var box = document.getElementById(droppedBoxId)
+    		    box.addEventListener("dragstart", function(event) {
+					drag(event);
+    		    });
+    		}
+		}
+
+		function randomPieceName() {
+			randomNumber++;
+			return 'piece'+randomNumber;
+		}
+
+		function postPuzzle() {
+			var efnNotation = "";
+			for (rowIndex = 1; rowIndex <= 8; rowIndex++) {
+				var emptyBoxCount = 0
+				for (columnIndex = 0; columnIndex < 8; columnIndex++) {
+					var box = document.getElementById(column[columnIndex]+rowIndex)
+					if (box.firstElementChild == null) {
+						emptyBoxCount++;
+					}
+					else {
+						var piece = box.firstElementChild.dataset['piece']
+						if (emptyBoxCount>0){
+							efnNotation+=emptyBoxCount
+							emptyBoxCount = 0
+						}
+						efnNotation+=piece
+					}
+				}
+				if (emptyBoxCount>0) {
+					efnNotation+=emptyBoxCount
+				}
+				efnNotation+="/"
+			}
+			alert(efnNotation);
+			window.location = "solution.html";
+		}
+	</script>
+</body>
+</html>
+
+	
