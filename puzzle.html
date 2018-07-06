@@ -84,11 +84,16 @@
 </head>
 <body>
 
+<div id="demo">
+</div>
 
-   
-<div class="container" dropable="true">
-	
-	<div id = "board_container" ondrop="drop(event)" ondragover="allowDrop(event)">
+
+
+
+
+<div  class="container" ondrop="drop(event)" ondragover="allowDrop(event)">
+
+ <div id = "board_container" ondrop="drop(event)" ondragover="allowDrop(event)">
 	</div>
 	<div class = "rightside_options">
 		<div class="options_container">
@@ -118,7 +123,12 @@
 	  			<option value="Expert">Expert</option>
 			</select>
 		</div>
-	<div class="piece_container">
+
+
+
+
+
+		<div class="piece_container">
 		<div id= "coins_left" >
 			<img  class="chess_piece" data-piece="k" src="images/black/k.png" draggable="true" ondragstart="drag(event)" width="50" height="50">
 			<img  class="chess_piece" data-piece="q" src="images/black/q.png" draggable="true" ondragstart="drag(event)" width="50" height="50">
@@ -135,20 +145,24 @@
 			<img  class="chess_piece" data-piece="P" src="images/white/P.png" draggable="true" ondragstart="drag(event)" width="50" height="50">
 			<img  class="chess_piece" data-piece="N" src="images/white/N.png" draggable="true" ondragstart="drag(event)" width="50" height="50">
 		<div> 
-	</div>
+		</div>
 		<a href="solution.html" role="button" id="btn_postPuzzle" onclick="postPuzzle()"></a>
 
 	</div>
-</div>
+	</div>
+
+
 	<script type="text/javascript">
 		var puzleObj = {}
 		var randomNumber = 0;
+		var column= new Array("a","b","c","d","e","f","g","h");
+		var droppableClasses = ["whiteBox","blackBox","droppedImage"]
+		
 		window.onload=createBoard();
-		//var a = 97;
-		//var charArray = {};
+		
 		
 		function createBoard(){
-			var column= new Array("a","b","c","d","e","f","g","h");
+			//var column= new Array(" ","a","b","c","d","e","f","g","h");
 		
 			for (rowIndex = 1; rowIndex <= 8 ; rowIndex++){
 				var rowDiv = document.createElement("div")
@@ -158,25 +172,20 @@
 				var row = document.createDocumentFragment()
 
 				for (columnIndex = 0; columnIndex < 8 ; columnIndex++){
-					console.log(column[columnIndex]);
-					//alert(column(0));
-					//alert(columnIndex[0]);
-					//charArray[String.fromCharCode(a + i)] = String.fromCharCode(a + i);
-					//alert(charArray);
-					//console.log(charArray);
 					var box = document.createElement('div')
-					box.id = ""+column[columnIndex]+""+rowIndex
+					box.id = column[columnIndex]+rowIndex
+					
 					if (rowIndex % 2 == 0){
 						if(columnIndex%2==0)
-							box.className = 'whiteBox'
-						else
 							box.className = 'blackBox'
+						else
+							box.className = 'whiteBox'
 					}
 					else {
 						if(columnIndex%2==0)
-							box.className = 'blackBox'
-						else
 							box.className = 'whiteBox'
+						else
+							box.className = 'blackBox'
 					}
 					row.appendChild(box)
 				}
@@ -184,36 +193,52 @@
 			}
 		}
 
-
-
-
-
-		function allowDrop(ev) {
-   			 ev.preventDefault();
-		}
-
 		function drag(ev) {
 			ev.dataTransfer.setData("src", ev.target.src);
 			ev.dataTransfer.setData("data-piece", ev.target.dataset.piece)
+			ev.dataTransfer.setData("className",ev.target.className)
 			if (ev.target.id) {
 				ev.dataTransfer.setData("id", ev.target.id)	
 			}
 		}
 
+		function allowDrop(ev) {
+   			 ev.preventDefault();
+   		}
+
 		function drop(ev) {
   			ev.preventDefault();
     		var src = ev.dataTransfer.getData("src");
     		var piece = ev.dataTransfer.getData("data-piece");
+
     		var id = ""
     		if (ev.dataTransfer.getData("id")) {
     			id = ev.dataTransfer.getData("id")
+    			//alert(id);
     		}
+    		
+    		var classNameDroppedInto = ev.target.className
+			var classNameOfDraggedImage =  ev.dataTransfer.getData("className")
+			//alert(classNameDroppedInto)
+			//alert(classNameOfDraggedImage);
+			//alert(droppableClasses.indexOf(classNameDroppedInto))
+
+			if(droppableClasses.indexOf(classNameDroppedInto) == -1 && classNameOfDraggedImage == "droppedImage") {
+				var elementToRemove = document.getElementById(id);
+				elementToRemove.parentNode.removeChild(elementToRemove);
+				return
+			}
+			
+
     		var droppedBoxId = ev.target.id;
     		var newimg = document.createElement('img')
     		newimg.src = src
     		newimg.id = id=="" ? randomPieceName() : id;
     		newimg.draggable = true;
+    		newimg.className = "droppedImage"
     		newimg.setAttribute('data-piece', piece)
+
+
 
     		var c = document.getElementById(droppedBoxId).childElementCount;
 			if( c == 0 ) {
@@ -225,8 +250,9 @@
     		    }
     		    var box = document.getElementById(droppedBoxId)
     		    box.addEventListener("dragstart", function(event) {
-					drag(event);
-    		    });
+					drag(event); 
+				 
+				});
     		}
 		}
 
